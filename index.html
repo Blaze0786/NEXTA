@@ -1,0 +1,1332 @@
+<!DOCTYPE html>  <html>  
+<head>  
+  <title>Nexta</title>    <style>#intro {  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  background: #020617;  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+  flex-direction: column;  
+  z-index: 9999;  
+  transition: opacity 0.5s;  
+}  
+  
+/* LOCK */  
+.lock {  
+  font-size: 70px;  
+  animation: lockGlow 1s infinite alternate;  
+}  
+  
+/* KEY */  
+.key {  
+  font-size: 55px;  
+  margin-top: 20px;  
+  transform: translateY(250px) rotate(0deg);  
+  opacity: 0;  
+}  
+  
+/* TEXT */  
+.logo-text {  
+  margin-top: 30px;  
+  font-size: 30px;  
+  opacity: 0;  
+  letter-spacing: 2px;  
+}  
+  
+/* 🔥 ANIMATIONS */  
+  
+@keyframes lockGlow {  
+  from {  
+    transform: scale(1);  
+    text-shadow: 0 0 10px #22c55e;  
+  }  
+  to {  
+    transform: scale(1.9);  
+    text-shadow: 0 0 30px #22c55e, 0 0 60px #22c55e;  
+  }  
+}  
+  
+@keyframes keyUnlock {  
+  0% {  
+    transform: translateY(250px) rotate(0deg);  
+    opacity: 0;  
+  }  
+  60% {  
+    transform: translateY(0) rotate(0deg);  
+    opacity: 1;  
+  }  
+  100% {  
+    transform: translateY(0) rotate(90deg);  
+  }  
+}  
+  
+@keyframes flash {  
+  0% { background: #020617; }  
+  50% { background: white; }  
+  100% { background: #020617; }  
+}  
+  
+@keyframes showText {  
+  from {  
+    opacity: 0;  
+    letter-spacing: 2px;  
+  }  
+  to {  
+    opacity: 1;  
+    letter-spacing: 6px;  
+  }  
+}  
+  
+@keyframes shake {  
+  0% { transform: translate(0); }  
+  25% { transform: translate(3px, -3px); }  
+  50% { transform: translate(-3px, 3px); }  
+  75% { transform: translate(3px, 3px); }  
+  100% { transform: translate(0); }  
+}  
+  
+/* Lock */  
+.lock {  
+  font-size: 60px;  
+  animation: lockPulse 1s infinite alternate;  
+  text-shadow: 0 0 15px #22c55e;  
+}  
+  
+/* Key */  
+.key {  
+  font-size: 50px;  
+  margin-top: 20px;  
+  transform: translateY(200px);  
+  animation: keyMove 2s forwards;  
+}  
+  
+/* NEXTA text */  
+.logo-text {  
+  margin-top: 30px;  
+  font-size: 28px;  
+  opacity: 0;  
+  animation: showText 1s forwards;  
+  animation-delay: 2s;  
+}  
+  
+/* Animations */  
+  
+@keyframes lockPulse {  
+  from { transform: scale(1); }  
+  to { transform: scale(1.2); }  
+}  
+  
+@keyframes keyMove {  
+  0% { transform: translateY(200px); }  
+  70% { transform: translateY(0); }  
+  100% { transform: rotate(20deg); }  
+}  
+  
+@keyframes showText {  
+  to {  
+    opacity: 1;  
+    letter-spacing: 4px;  
+  }  
+}  
+   body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+  overflow-x: hidden;
+}
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+button, .menu-btn, .card {
+  outline: none;
+  user-select: none;
+}
+
+
+/* Sidebar fixed */
+.sidebar {
+  width: 220px;
+  height: 150vh;
+  background: #020617;
+  padding-top: 80px;
+  position: fixed;
+}
+  
+    .sidebar {  
+      width: 220px;  
+      height: 150vh;  
+      background: #020617;  
+      padding-top: 80px;  
+      position: fixed;  
+      display: none;  
+    }  
+  
+    .menu-btn {  
+      padding: 15px;  
+      cursor: pointer;  
+    }  
+  
+    .menu-btn:hover {  
+      background: #1e293b;  
+    }  
+  
+    .menu-toggle {  
+      position: fixed;  
+      top: 20px;  
+      left: 20px;  
+      font-size: 28px;  
+      cursor: pointer;  
+    }  
+  
+    .logo {  
+      position: fixed;  
+      top: 20px;  
+      left: 70px;  
+      font-size: 24px;  
+      font-weight: bold;  
+    }  
+  
+    #home {  
+      width: 100%;  
+      height: 100vh;  
+      display: flex;  
+      justify-content: center;  
+      align-items: center;  
+      flex-direction: column;  
+    }  
+  
+  #generator,#checker,#user,#webip,#qrtool,#iptool,#pfp,#jokes,#roast,#game,#about,#auth{
+  display: none;
+  margin-left: 220px;
+  padding: 120px 20px;
+  text-align: center;
+  min-height: 10vh;
+}
+  
+    .card {
+  background: linear-gradient(145deg, #020617, #0f172a);
+  padding: 30px;
+  border-radius: 16px;
+  display: inline-block;
+  box-shadow: 0 0 20px rgba(34,197,94,0.2);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 40px rgba(34,197,94,0.5);
+}
+#qrImg {
+  border-radius: 12px;
+  box-shadow: 0 0 20px #22c55e;
+  padding: 10px;
+  background: white;
+}
+#instaLogo {
+  box-shadow: 0 0 15px #e1306c;
+  background: white;
+  padding: 5px;
+}
+#qrName {
+  font-size: 18px;
+  color: #22c55e;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+  
+    input {  
+      padding: 10px;  
+      margin: 10px;  
+      border-radius: 8px;  
+      border: none;  
+    }  
+  
+  button {  
+      padding: 10px 20px;  
+      background: #22c55e;  
+      border: none;  
+      color: white;  
+      border-radius: 8px;  
+      cursor: pointer;  
+      margin: 10px;}
+    button:hover {
+    transform: scale(1.1);
+    background: #16a34a;
+    transition: 0.3s;
+   }
+  
+#pfpImg {
+  width: 160px;
+  border-radius: 50%;
+  padding: 10px;
+  background: #020617;
+  box-shadow: 0 0 25px #22c55e, 0 0 50px #22c55e;
+  transition: 0.3s;
+}
+
+#pfpImg:hover {
+  transform: scale(1.1);
+} 
+button {
+  margin-top: 10px;}
+#donateBox img {
+  border-radius: 16px;
+  padding: 10px;
+  background: white;
+
+  box-shadow: 0 0 15px #22c55e;
+  animation: glowQR 2s infinite alternate;
+}
+
+@keyframes glowQR {
+  from {
+    box-shadow: 0 0 10px #22c55e;
+    transform: scale(1);
+  }
+  to {
+    box-shadow: 0 0 30px #22c55e, 0 0 60px #22c55e;
+    transform: scale(1.05);
+  }
+}
+#donateText {
+  color: #22c55e;
+  animation: textGlow 2s infinite alternate;
+}
+
+@keyframes textGlow {
+  from {
+    text-shadow: 0 0 5px #22c55e;
+  }
+  to {
+    text-shadow: 0 0 20px #22c55e, 0 0 40px #22c55e;
+  }
+}
+</style>  </head>  
+  <body>  
+  <div id="intro">  
+  <div class="lock">🔒</div>  
+  <div class="key">🔑</div>  
+  <h1 class="logo-text">NEXTA</h1>  
+</div>  <div class="menu-toggle" onclick="openSidebar()">☰</div>  
+<div class="logo">NEXTA</div>  <div id="sidebar" class="sidebar">  
+  <div class="menu-btn" onclick="goHome()">🏠 Home</div>  
+  <div class="menu-btn" onclick="goGen()">🔐password Generator</div>  
+  <div class="menu-btn" onclick="goCheck()">🛡password Checker</div>  
+  <div class="menu-btn" onclick="goUser()">🔍 Username Generator</div>  
+  <div class="menu-btn" onclick="goIP()">🌐 Your IP info</div>  
+  <div class="menu-btn" onclick="goWebIP()">🌍 Web IP</div> 
+  <div class="menu-btn" onclick="goQR()">📷 Instagram QR</div>
+  <div class="menu-btn" onclick="goPFP()">👤 PFP Studio</div>
+  <div class="menu-btn" onclick="goJokes()">😂 Jokes</div>
+  <div class="menu-btn" onclick="goRoast()">😈 Roast Generator</div>
+  <div class="menu-btn" onclick="goGame()">🎮 Lucky Game</div>
+  <div class="menu-btn" onclick="goAbout()">ℹ️ About Us</div>
+  <div class="menu-btn" onclick="goAuth()">🔑 Login / Signup</div>
+  <hr style="border:1px solid #1e293b; margin:15px;">
+
+<p style="padding-left:15px; color:#22c55e;">🔥 Try These</p>
+<div style="font-size:12px; color:#6b7280; padding-left:15px;">
+  Sponsored
+</div>
+<div class="menu-btn" onclick="openAd1()">💻 Best Coding App</div>
+<div class="menu-btn" onclick="openAd2()">📱 Earn Money App</div>
+<div class="menu-btn" onclick="openAd3()">🎮 Cool Games</div>
+</div>
+<div id="home">
+  <h1>NEXTA</h1>  
+  <p>Welcome! to NEXTA smart tools for you🚀</p>  
+  <p style="color:#9b9b9b">  
+⚡ Your all-in-one smart tools hub<br>  
+🔐 Generate strong passwords in seconds<br>  
+🛡 Check your password strength instantly<br>  
+🎯 Create stylish usernames like a pro<br>
+💡 More powerful features coming soon...<br>  
+🔥 Stay tuned & upgrade your digital style!
+</p>  
+<hr style="width:60%; border:1px solid #1e293b; margin:30px 0;">
+
+<h3 style="color:#22c55e;">💖 Support Nexta</h3>
+<p style="color:#9b9b9b;">
+If you like these tools, yobu can support us 🚀
+</p>
+
+<button onclick="showDonate()" style="margin-top:10px;">
+💰 Donate
+</button>
+
+<div id="donateBox" style="display:none; margin-top:20px;">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=yourupi@okaxis&pn=Nexta&cu=INR">
+  <p id="donateText">Scan & Support ❤️</p>
+  <button onclick="closeDonate()">❌ Close</button>
+</div>
+</div>  
+<div id="generator">  
+  <div class="card">  
+    <h2>Password Generator</h2>  
+    <p style="color:#94a3b8;">Enter password length</p>  
+    <input type="number" id="len" placeholder="e.g. 8">  
+    <br>  
+    <button onclick="gen()">Generate</button>  
+    <p id="out"></p>
+<button onclick="copyPass()">📋 Copy</button>
+  </div>  
+</div>  <div id="checker">  
+  <div class="card">  
+    <h2>Password Checker</h2>  
+    <input type="text" id="chk" placeholder="Enter password">  
+    <br>  
+    <button onclick="check()">Check</button>  
+    <p id="res"></p>  
+  </div>  
+</div>  
+<div id="user" style="display:none; margin-left:220px; padding:120px 20px; text-align:center"; >  
+  <div class="card">  
+    <h2>Username Generator</h2>  
+    <input type="text" id="name" placeholder="Enter your name">  
+    <br>  
+    <button onclick="genUser()">Generate</button>  
+    <p id="userResult"></p>
+<button onclick="copyUser()">📋 Copy</button>
+  </div>  
+</div> 
+<div id="iptool">
+  <div class="card">
+    <h2>🌐 My IP Info</h2>
+
+    <button onclick="getIP()">Show My IP</button>
+
+    <p id="ipResult"></p>
+  </div>
+</div>
+<div id="webip" style="display:none; margin-left:220px; padding:120px 20px; text-align:center;">  
+  <div class="card">  
+    <h2>🌍 Website IP Finder</h2>  
+    <input type="text" id="domain" placeholder="e.g. google.com">  
+    <br>  
+    <button onclick="getWebIP()">Find IP</button>  
+    <p id="webResult"></p>  
+  </div>  
+</div> 
+
+<div id="qrtool">
+  <div class="card">
+    <h2>📷 Instagram QR Generator</h2>
+
+    <input type="text" id="insta" placeholder="Enter Instagram username">
+    <br>
+    <button onclick="genQR()">Generate QR</button>
+
+    <br><br>
+    <div style="position:relative; display:inline-block;">
+  <img id="qrImg" style="width:220px; display:none;">
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+       style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+              width:50px; border-radius:12px; display:none;"
+       id="instaLogo">
+</div>
+    <p style="color:#bfbaba; font-size:14px; margin-top:10px;">
+⚠️ Please enter exact Instagram username
+</p>
+    <p id="qrName" style="margin-top:10px;"></p>
+    <button onclick="downloadQR()">⬇️ Download</button>
+  </div>
+</div>
+<!-- 👇 PASTE PFP HERE -->
+<div id="pfp" style="display:none; margin-left:220px; padding:120px 20px; text-align:center;">
+  <div class="card">
+    <h2>🎭 PFP Studio</h2>
+
+    <input type="text" id="pfpName" placeholder="Enter name">
+    <br><br>
+
+    <select id="pfpStyle">
+      <option value="adventurer">🔥 Anime Style</option>
+      <option value="avataaars">😎 Pro Avatar</option>
+      <option value="bottts">🤖 Tech Robot</option>
+      <option value="personas">🧑 Minimal Clean</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="genPFP()">Generate</button>
+
+    <br><br>
+
+    <img id="pfpImg" style="display:none;">
+  </div>
+</div>
+
+<!-- 👇 PASTE JOKES HERE -->
+<div id="jokes" style="display:none; margin-left:220px; padding:120px 20px; text-align:center;">
+  <div class="card">
+    <h2>😂 Joke Generator</h2>
+
+    <button onclick="genJoke()">Tell me a joke</button>
+    <button onclick="genJoke()">➡️ Next Joke</button>
+
+    <p id="jokeResult"></p>
+  </div>
+</div>
+<!-- 👇 PASTE HERE EXACTLY -->
+<div id="roast" style="display:none; margin-left:220px; padding:120px 20px; text-align:center;">
+  <div class="card">
+    <h2>😈 Roast Generator</h2>
+
+    <input type="text" id="roastName" placeholder="Enter name (optional)">
+    <br>
+
+    <button onclick="genRoast()">➡️ generate</button>
+
+    <p id="roastResult"></p>
+
+    <button onclick="copyRoast()">📋 Copy</button>
+  </div>
+</div>
+<div id="game" style="display:none; margin-left:220px; padding:120px 20px; text-align:center;">
+  <div class="card">
+    <h2>🎮 Lucky Number Game</h2>
+
+    <p>Choose number (1–10)</p>
+    <input type="number" id="userNum" min="1" max="10">
+
+    <br>
+    <button onclick="playGame()">Try Luck</button>
+
+    <p id="gameResult"></p>
+  </div>
+</div>
+<div id="about">
+  <div class="card">
+    <h2>ℹ️ About NEXTA</h2>
+
+    <p style="color:#9b9b9b;">
+      NEXTA is a smart tools website 🚀<br><br>
+      🔐 Password tools<br>
+      🎯 Username generator<br>
+      🌐 IP tools<br>
+      😂 Fun tools<br><br>
+      Built with ❤️
+    </p>
+
+    <h3 style="color:#22c55e;">👨‍💻 Developer</h3>
+    <p>•$BLAZE•</p>
+<h3 style="color:#22c55e; margin-top:20px;">📩 Contact</h3>
+
+<p style="color:#9b9b9b;">
+  📸 Instagram: 
+  <a href="https://instagram.com/x_Blaze.369" target="_blank" 
+     style="color:#22c55e; text-decoration:none; text-shadow:0 0 10px #22c55e;">
+    @x_Blaze.369
+  </a>
+</p>
+  </div>
+</div>
+<div id="auth" style="display:none; margin-left:220px; padding:120px 20px; text-align:center;">
+  <div class="card">
+
+    <h2>🔑 Login / Signup</h2>
+
+    <input type="text" id="authUser" placeholder="Username">
+    <br>
+    <input type="password" id="authPass" placeholder="Password">
+    <br>
+
+    <button onclick="signup()">Sign Up</button>
+    <button onclick="login()">Login</button>
+
+    <p id="authMsg"></p>
+
+  </div>
+</div>
+
+<div id="thankPopup" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#020617;
+padding:30px;
+border-radius:16px;
+box-shadow:0 0 30px #22c55e;
+text-align:center;
+z-index:9999;
+">
+   <h2 style="color:#22c55e;">💖 Thank You!</h2>
+  <p>Your support means a lot 🚀</p>
+  <button onclick="closePopup()">Close</button>
+</div> 
+<script>  
+/*function hideAll() {
+document.getElementById("home").style.display = "none";
+document.getElementById("generator").style.display = "none";
+document.getElementById("checker").style.display = "none";
+document.getElementById("user").style.display = "none";
+document.getElementById("iptool").style.display = "none";
+document.getElementById("webip").style.display = "none";
+document.getElementById("qrtool").style.display = "none";
+document.getElementById("pfp").style.display = "none";
+document.getElementById("jokes").style.display = "none";
+document.getElementById("roast").style.display = "none";
+document.getElementById("game").style.display = "none";
+document.getElementById("about").style.display = "none";
+document.getElementById("auth").style.display = "none";*/
+
+  
+  
+function hideAll() {
+  document.getElementById("home").style.display = "none";
+  document.getElementById("generator").style.display = "none";
+  document.getElementById("checker").style.display = "none";
+  document.getElementById("user").style.display = "none";
+  document.getElementById("iptool").style.display = "none";
+  document.getElementById("webip").style.display = "none";
+  document.getElementById("qrtool").style.display = "none";
+  document.getElementById("pfp").style.display = "none";
+  document.getElementById("jokes").style.display = "none";
+  document.getElementById("roast").style.display = "none";
+  document.getElementById("game").style.display = "none";
+  document.getElementById("about").style.display = "none";
+  document.getElementById("auth").style.display = "none";
+
+  // 🔥 CLEAR OLD DATA (IMPORTANT FIX)
+  document.getElementById("ipResult").innerText = "";
+  document.getElementById("webResult").innerText = "";
+  document.getElementById("userResult").innerText = "";
+  document.getElementById("out").innerText = "";
+}
+
+function goHome() {
+  hideAll();
+  document.getElementById("home").style.display = "flex";
+  
+}
+
+function goGen() {
+  hideAll();
+  document.getElementById("generator").style.display = "block";
+}
+
+function goCheck() {
+  hideAll();
+  document.getElementById("checker").style.display = "block";
+}
+
+function goUser() {
+  hideAll();
+  document.getElementById("user").style.display = "block";
+}
+
+function goIP() {
+  hideAll();
+  document.getElementById("iptool").style.display = "block";
+}
+function goWebIP() {
+  hideAll();
+  document.getElementById("webip").style.display = "block";
+}
+ function goQR() {
+  hideAll();
+  document.getElementById("qrtool").style.display = "block";
+} 
+function goJokes() {
+  hideAll();
+  document.getElementById("jokes").style.display = "block";
+}
+function closeDonate() {
+  document.getElementById("donateBox").style.display = "none";
+}
+function goAbout() {
+  hideAll();
+  document.getElementById("about").style.display = "block";
+}
+let key = document.querySelector(".key");  
+let intro = document.getElementById("intro");  
+let text = document.querySelector(".logo-text");  
+  
+setTimeout(() => {  
+  key.style.animation = "keyUnlock 1.5s forwards";  
+}, 1000);  
+setTimeout(() => {  
+  intro.style.animation = "flash 0.5s";  
+  intro.style.animation += ", shake 0.3s";  
+}, 2300);  
+setTimeout(() => {  
+  text.style.animation = "showText 1s forwards";  
+}, 2600);  
+  
+setTimeout(() => {  
+  intro.style.opacity = "0";  
+  setTimeout(() => {  
+    intro.style.display = "none";  
+  }, 500);  
+}, 4000);  
+function openSidebar() {
+  let s = document.getElementById("sidebar");
+  s.style.display = (s.style.display === "block") ? "none" : "block";
+}
+  
+/*function goHome() {  
+  home.style.display = "flex";  
+  generator.style.display = "none";  
+  checker.style.display = "none";  
+  user.style.display = "none";  
+  sidebar.style.display = "none";  
+}
+
+function goGen() {  
+  home.style.display = "none";  
+  generator.style.display = "block";  
+  checker.style.display = "none";  
+  user.style.display = "none";  
+}  
+
+function goCheck() {  
+  home.style.display = "none";  
+  generator.style.display = "none";  
+  checker.style.display = "block";  
+  user.style.display = "none";  
+}  
+
+function goUser() { 
+  home.style.display = "none";  
+  generator.style.display = "none"; 
+  checker.style.display = "none";  
+  user.style.display = "block";  
+}*/
+function goUser() {
+  hideAll();
+  document.getElementById("user").style.display = "block";
+}b
+function showDonate() {
+  let box = document.getElementById("donateBox");
+  let popup = document.getElementById("thankPopup");
+
+  box.style.display = box.style.display === "none" ? "block" : "none";
+  popup.style.display = "block";
+
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 3000);
+} 
+  
+function gen() {  
+  let l = document.getElementById("len").value;  
+  let c = "abcdefghijklmnopqrstuvwxyzABCDEFGVWXYZ01234567891235687736764648987100197638!@#$%$#@&<>=^**&*()";  
+  let p = "";  
+  for (let i = 0; i < l; i++) {  
+    p += c[Math.floor(Math.random()*c.length)];  
+  }  
+  document.getElementById("out").innerText = p;  
+}  
+  
+function check() {  
+  let p = document.getElementById("chk").value; 
+  let res = document.getElementById("res");
+  if (p.length < 6) res.innerText = "🫣Weak";  
+  else if (p.length < 10) res.innerText = "🔥Medium"; 
+  else res.innerText = "☠️Strong"; 
+
+}  
+  
+function genUser() {  
+  let name = document.getElementById("name").value;
+  if (name === ""){ alert("Enter name!");
+  return;
+  }
+  let list =[  
+   "【👑"+name+"亗GOD】",  
+   "dark_" + name,  
+   "♛"+name+"亗X♛",  
+   "『☠"+name+"』",  
+   "༺💀"+name+"✘༻",  
+   "꧁⚡𝑷𝒓𝒐☠"+name+"꧂",  
+   name + "×_×",  
+   "꧁⚡"+name+"亗Pro꧂",  
+   "亗" + name + "亗",  
+   "ツ" + name + "彡",  
+   "乂" + name + "乂",  
+   "⚡" + name + "YT",  
+   "•" + name + "•OP",  
+   "꧁ঔৣ☬" + name + "☬ঔৣ꧂",  
+    "【👑"+name+"亗GOD】",  
+    "dark_" + name,  
+    "♛"+name+"亗X♛",  
+    "『☠"+name+"』",  
+   "༺💀"+name+"✘༻" ,  
+    "꧁⚡𝑷𝒓𝒐☠"+name+"꧂",  
+    name + "×_×",  
+   "꧁⚡"+name+"亗Pro꧂"];  
+  
+  let random = list[Math.floor(Math.random() * list.length)];  
+  document.getElementById("userResult").innerText = random;  
+  
+}  
+function getIP() {  
+  let result = document.getElementById("ipResult");  
+  
+  result.innerText = "Loading... ⏳";  
+  
+  fetch("https://api.ipify.org?format=json")  
+    .then(res => res.json())  
+    .then(data => {  
+      result.innerText = "🌐 Your IP: " + data.ip;  
+    })  
+    .catch(() => {  
+      result.innerText = "❌ Error loading IP";  
+    });  
+}  
+function goWebIP() {  
+  hideAll();  
+  document.getElementById("webip").style.display = "block";  
+}  
+function getWebIP() {  
+  let domain = document.getElementById("domain").value;  
+  let result = document.getElementById("webResult");  
+  
+  if (domain === "") {  
+    result.innerText = "⚠️ Enter a website!";  
+    return;  
+  }  
+  
+  result.innerText = "Loading... ⏳";  
+  
+  fetch("https://dns.google/resolve?name=" + domain)  
+    .then(res => res.json())  
+    .then(data => {  
+      if (data.Answer) {  
+        result.innerText = "🌐 IP: " + data.Answer[0].data;  
+      } else {  
+        result.innerText = "❌ No IP found";  
+      }  
+    })  
+    .catch(() => {  
+      result.innerText = "❌ Error";  
+    });  
+}  
+
+
+function genQR() {
+  let username = document.getElementById("insta").value;
+  let img = document.getElementById("qrImg");
+
+  if (username === "") {
+    alert("⚠️ Enter username!");
+    return;
+  }
+
+  let url = "https://instagram.com/" + username;
+
+  img.src = "https://quickchart.io/qr?text=" + url + "&size=250&dark=0f172a&light=ffffff";
+  img.style.display = "block";
+
+  document.getElementById("instaLogo").style.display = "block";
+
+  // 👇 ADD THIS
+  document.getElementById("qrName").innerText = "@" + username;
+} 
+function downloadQR() {
+  let img = document.getElementById("qrImg");
+
+  if (img.style.display === "none") {
+    alert("⚠️ Generate QR first!");
+    return;
+  }
+
+  let link = document.createElement("a");
+  link.href = img.src;
+  link.download = "instagram_qr.png";
+  link.click();
+}
+
+function donate() {
+  window.location.href = "upi://pay?pa=yourupi@okaxis&pn=Nexta&cu=INR";
+}
+function goPFP() {
+  hideAll();
+  document.getElementById("pfp").style.display = "block";
+}
+
+function genPFP() {
+  let name = document.getElementById("pfpName").value;
+  let style = document.getElementById("pfpStyle").value;
+  let img = document.getElementById("pfpImg");
+
+  if (name === "") {
+    alert("⚠️ Enter name!");
+    return;
+  }
+
+  img.src = "https://api.dicebear.com/7.x/" + style + "/svg?seed=" + name;
+  img.style.display = "block";
+}
+function copyPass() {
+  let text = document.getElementById("out").innerText;
+
+  if (text === "") {
+    alert("⚠️ No password!");
+    return;
+  }
+
+  navigator.clipboard.writeText(text);
+  let btn = event.target;
+btn.innerText = "✅ Copied!";
+setTimeout(() => {
+  btn.innerText = "📋 Copy";
+}, 1500);
+}
+function copyUser() {
+  let text = document.getElementById("userResult").innerText;
+
+  if (text === "") {
+    alert("⚠️ No username!");
+    return;
+  }
+
+  navigator.clipboard.writeText(text);
+  alert("✅ Username Copied!");
+}
+function genJoke() {
+
+  let funny = [
+"😂 I tried to be normal once… worst 2 minutes of my life.",
+"🤣 I’m not lazy, I’m on energy-saving mode.",
+"😂 My brain has too many tabs open.",
+"🤣 I need a 6-month holiday… twice a year.",
+"😂 I talk to myself because I like intelligent conversations.",
+"🤣 I woke up early today… by mistake.",
+"😂 I’m not arguing, I’m just explaining why I’m right.",
+"🤣 My phone battery lasts longer than my relationships.",
+"😂 I’m not short, I’m just concentrated awesome.",
+"🤣 I forgot what I was saying… oh wait 😂",
+
+"😂 I put my phone in airplane mode… but it’s not flying.",
+"🤣 I need WiFi like I need oxygen.",
+"😂 I’m not late, I’m just fashionably delayed.",
+"🤣 I don’t need anger management, I need people to stop being annoying.",
+"😂 My bed and I are in a serious relationship.",
+"🤣 I run… out of patience.",
+"😂 I don’t sweat, I sparkle 😂",
+"🤣 I’m not weird, I’m limited edition.",
+"😂 I need a break… from doing nothing.",
+"🤣 I’m not ignoring you, I’m just busy doing nothing.",
+
+"😂 I told my computer I need a break… it said no problem and froze.",
+"🤣 My life feels like a test I didn’t study for.",
+"😂 I eat cake because it’s somebody’s birthday somewhere.",
+"🤣 I’m not addicted to my phone… we’re just in a relationship.",
+"😂 I came, I saw, I forgot what I was doing.",
+"🤣 My brain is 90% song lyrics.",
+"😂 I tried dieting… but food said no.",
+"🤣 I don’t make mistakes, I create memories.",
+"😂 I’m not lazy, I’m just highly motivated to do nothing.",
+"🤣 I need sleep… but my phone needs me.",
+
+"😂 I laughed so hard… my neighbors learned my secrets.",
+"🤣 I’m not crazy, my reality is just different.",
+"😂 I don’t trip… I do random gravity checks.",
+"🤣 I’m on a seafood diet… I see food and eat it.",
+"😂 My wallet is like an onion… opening it makes me cry.",
+"🤣 I’m not broke… just financially confused.",
+"😂 I clean my room… then it gets dirty again magically.",
+"🤣 I’m not clumsy, the floor just hates me.",
+"😂 I’m 99% angel… but that 1% 💀",
+"🤣 I don’t snore, I dream I’m a motorcycle.",
+
+"😂 I’m not lazy, I just enjoy doing nothing.",
+"🤣 I talk to my phone… and it ignores me.",
+"😂 I need a clone… to do my work.",
+"🤣 I blink… and it’s Monday again.",
+"😂 I don’t rise and shine… I caffeinate and hope.",
+"🤣 My bed is calling me… I must go.",
+"😂 I’m not funny… I’m just really hilarious.",
+"🤣 I don’t need a therapist… I have memes.",
+"😂 I wish homework could do itself.",
+"🤣 I’m not old… I’m classic.",
+
+"😂 I open fridge 10 times… nothing changes.",
+"🤣 I don’t procrastinate… I just delay greatness.",
+"😂 I don’t get tired… I get bored.",
+"🤣 I’m not ignoring you… I’m just thinking deeply.",
+"😂 I need money… not stress.",
+"🤣 I don’t lose things… they disappear magically.",
+"😂 I tried being serious… it didn’t suit me.",
+"🤣 I laugh at my own jokes… because they’re good.",
+"😂 I don’t sleep late… I explore night life.",
+"🤣 I’m not slow… I’m just buffering.",
+
+"😂 I don’t need luck… I need WiFi.",
+"🤣 I don’t get lost… I find new paths.",
+"😂 I’m not distracted… I’m multi-thinking.",
+"🤣 I don’t fail… I level up.",
+"😂 I don’t talk too much… you just listen slow.",
+"🤣 I’m not messy… I’m creatively organized.",
+"😂 I’m not short… I’m fun size.",
+"🤣 I don’t forget… I just don’t remember.",
+"😂 I don’t panic… I just react dramatically.",
+"🤣 I’m not weird… I’m special edition.",
+
+"😂 I don’t need sleep… I need answers.",
+"🤣 I don’t run… unless chased.",
+"😂 I don’t cry… I leak emotions.",
+"🤣 I don’t waste time… I invest it badly.",
+"😂 I’m not shy… I’m just observing.",
+"🤣 I don’t lie… I creatively tell truth.",
+"😂 I don’t quit… I restart.",
+"🤣 I don’t complain… I express deeply.",
+"😂 I don’t argue… I prove facts.",
+"🤣 I don’t get bored… I create chaos.",
+
+"😂 I don’t relax… I recharge lazily.",
+"🤣 I don’t work hard… I work smartly slow.",
+"😂 I don’t fail tests… tests fail me.",
+"🤣 I don’t sleep early… I think deeply at night.",
+"😂 I don’t waste food… I save it for later (never eat).",
+"🤣 I don’t watch reels… reels watch me.",
+"😂 I don’t check phone… phone checks me.",
+"🤣 I don’t eat snacks… snacks eat me.",
+"😂 I don’t scroll… I explore endlessly.",
+"🤣 I don’t laugh… I explode 😂",
+"😂 I opened the fridge 5 times… still nothing changed. I thought maybe food will spawn.",
+"🤣 I went to sleep at 2am to fix my life… woke up at 10 with same problems.",
+"😂 I checked my bank balance… now my mood is also low balance.",
+"🤣 I cleaned my room… now I can’t find anything.",
+"😂 I started exercising… I did 1 push-up and pushed myself back to bed.",
+"🤣 My brain: let's be productive. Me: let’s watch reels.",
+"😂 I saved money by not going out… then spent it online 😭",
+"🤣 I walked into a room and forgot why… now I live there.",
+"😂 I opened WhatsApp… forgot why… closed it… remembered… opened again.",
+"🤣 I laughed at my own joke… because no one else will 💀",
+
+"😂 I studied for 2 hours… reward: 5 hours phone 😎",
+"🤣 My alarm and I have a toxic relationship.",
+"😂 I said I’ll sleep early… then my phone said ‘scroll more’",
+"🤣 I drink water… then forget to drink water again.",
+"😂 I went to do something important… ended up on YouTube.",
+"🤣 My phone battery dies faster than my motivation.",
+"😂 I planned my day… then ignored the plan.",
+"🤣 I sit to study… suddenly everything else becomes interesting.",
+"😂 I’m not lazy… I’m just on 1% battery.",
+"🤣 I wake up tired… from doing nothing.",
+
+"😂 I don’t run… unless something is chasing me.",
+"🤣 I opened Google… forgot what I wanted to search.",
+"😂 I eat snacks… then think why I’m not fit.",
+"🤣 I go to sleep early… in my imagination.",
+"😂 I don’t need a gym… I do mental exercises (overthinking).",
+"🤣 My life is like loading… but never completes.",
+"😂 I tried to save money… but online shopping said hello.",
+"🤣 I sit to relax… then stress comes automatically.",
+"😂 I don’t have bad handwriting… it’s a secret code.",
+"🤣 I went to kitchen for water… came back with snacks.",
+
+"😂 I open Instagram for 5 min… come back after 2 hours.",
+"🤣 I don’t ignore people… I just forget they exist.",
+"😂 I sleep with full motivation… wake up with zero.",
+"🤣 My brain works best… at night when I should sleep.",
+"😂 I don’t need a horror movie… my exams are enough.",
+"😂 I don’t lose things… they just disappear forever.",
+"🤣 I go to study… my brain goes offline.",
+"😂 I sit to do homework… suddenly room cleaning feels important.",
+"🤣 I don’t talk too much… I just have too many thoughts.",
+
+"😂 I open fridge slowly… like something new will appear.",
+"🤣 I don’t forget things… I just remember them later.",
+"😂 I plan to be productive… then take a ‘short break’ of 2 hours.",
+"🤣 I don’t need sleep… I need answers.",
+"😂 I try to fix my life… then get distracted.",
+"🤣 I don’t waste time… time wastes me.",
+"😂 I go to sleep… then remember everything I forgot.",
+"🤣 I start something… then leave it in middle like my motivation.",
+"😂 I don’t cry… I just laugh at my situation.",
+"🤣 I think too much… even about not thinking.",
+
+"😂 I don’t procrastinate… I delay greatness.",
+"🤣 I sit quietly… but inside my brain is chaos.",
+"😂 I try to save battery… still ends at 1%.",
+"🤣 I don’t need a therapist… I need money.",
+"😂 I go to sleep… then scroll for 1 more hour.",
+"🤣 I don’t get tired… I get bored of being tired.",
+"😂 I open notes to study… end up reading old chats.",
+"🤣 I don’t forget homework… I just ignore it.",
+"😂 I don’t panic… I just react loudly.",
+"🤣 I don’t need motivation… I need discipline (but I don’t have it 😭)",
+
+"😂 I check time again and again… like it will change faster.",
+"🤣 I try to focus… then get distracted by nothing.",
+"😂 I don’t need a plan… I need luck.",
+"🤣 I sit to do work… suddenly hunger starts.",
+"😂 I don’t hate mornings… mornings hate me.",
+"🤣 I don’t run from problems… I sleep.",
+"😂 I don’t waste food… I eat everything 😎",
+"🤣 I don’t have enemies… only people who don’t like me 😂",
+"😂 I don’t cry over small things… only big ones 😭",
+"🤣 I don’t fail… I learn what not to do next time",
+
+"😂 I open app… forget why… close… remember… open again.",
+"🤣 I don’t need a reason to laugh… my life is enough.",
+"😂 I try to be normal… but fail every time.",
+"🤣 I don’t give up… I just take long breaks.",
+"😂 I don’t ignore alarms… I snooze them respectfully.",
+"🤣 I don’t lose focus… focus leaves me.",
+"😂 I don’t have bad luck… just bad timing.",
+"🤣 I don’t talk less… I just listen more.",
+"😂 I don’t complain… I explain my suffering.",
+
+
+
+
+
+
+
+
+"🤣 I don’t overthink… I over-analyze everything"
+];
+
+  let emotional = [
+    "💔 Sometimes silence is the loudest pain.",
+    "💔 I smile outside, but inside I’m tired.",
+    "💔 The worst feeling is not being enough.",
+    "💔 Broken hearts still beat… sadly.",
+    "💔 I wish feelings had an off button."
+  ];
+
+  let motivational = [
+    "💪 One day or day one — you decide.",
+    "🔥 Push yourself, no one else will.",
+    "💪 Dreams don’t work unless you do.",
+    "🔥 Stay strong, your time is coming.",
+    "💪 Pain today = power tomorrow."
+  ];
+
+  let romantic = [
+    "❤️ You are my favorite notification.",
+    "❤️ I don’t need perfect, I need you.",
+    "❤️ In a world full of trends, I choose you.",
+    "❤️ You + Me = ❤️",
+    "❤️ Every moment with you feels special."
+  ];
+
+  let savage = [
+    "😈 I’m not rude, I just have a savage personality.",
+    "😎 I don’t lose, I learn.",
+    "🔥 Legends don’t compete, they dominate.",
+    "😏 I’m not special, I’m just limited edition.",
+    "👑 I’m the vibe you can’t replace."
+  ];
+
+  // combine all
+  let all = funny.concat(emotional, motivational, romantic, savage);
+
+  let random = all[Math.floor(Math.random() * all.length)];
+
+  document.getElementById("jokeResult").innerText = random;
+} 
+function goRoast() {
+  hideAll();
+  document.getElementById("roast").style.display = "block";
+}
+
+function genRoast() {
+  let name = document.getElementById("roastName").value || "Bro";
+ 
+
+  let roasts = [
+
+"😂 You don’t have bad ideas… you just have all of them.",
+"🤣 If confusion was a person… it would be you.",
+"😂 You don’t need a mirror… life already reflects your decisions.",
+"🤣 You’re not behind in life… you’re just on airplane mode.",
+"😂 Your brain takes holidays more than you do.",
+"🤣 You’re not a problem… you’re a full system error.",
+"😂 If effort had a face… it wouldn’t recognize you.",
+"🤣 You don’t think outside the box… you lost the box.",
+"😂 You’re not late… you just arrive after everything matters.",
+"🤣 Your logic is like WiFi in basement… no signal.",
+  
+"😂 You don’t fail… you just find new ways not to succeed.",
+"🤣 You’re not confusing… you’re consistently unclear.",
+"😂 You don’t make noise… you make unnecessary updates.",
+"🤣 If focus was money… you’d be broke.",
+"😂 You’re not slow… you’re just thinking in long loading screen.",
+"🤣 Your plans sound great… until reality joins.",
+"😂 You don’t lose arguments… you just change topics.",
+"🤣 You’re not unpredictable… you’re just random.",
+"😂 If decisions had quality… yours would be in beta version.",
+"🤣 You’re not extra… you’re just unnecessary extension.",
+  
+"😂 You don’t need enemies… your choices are enough.",
+"🤣 You’re not dramatic… you’re a full season series.",
+"😂 You don’t think fast… you think eventually.",
+"🤣 You’re not confusing people… you’re testing patience.",
+"😂 Your confidence is impressive… considering the content.",
+"🤣 You don’t need a map… you still won’t find direction.",
+"😂 You’re not lost… you’re permanently exploring nothing.",
+"🤣 You don’t overthink… you overcomplicate everything.",
+"😂 You’re not unlucky… you just ignore good ideas.",
+"🤣 You don’t stop… even when you should.",
+  
+"😂 You’re not useless… you’re just not required.",
+"🤣 You don’t bring value… you bring questions.",
+"😂 You’re not broken… just poorly assembled.",
+"🤣 You don’t confuse me… you amaze me (in wrong way).",
+"😂 You don’t lack effort… you misplace it.",
+"🤣 You’re not quiet… just not contributing.",
+"😂 You don’t improve… you stay consistent (same level).",
+"🤣 You’re not annoying… you’re persistently present.",
+"😂 You don’t think small… you just think less.",
+"🤣 You’re not offline… just disconnected from logic.",
+"😂 You don’t have bad luck… you just make creative decisions.",
+"🤣 You’re not confusing… you’re just advanced level misunderstanding.",
+"😂 If effort was visible… yours would need a microscope.",
+"🤣 You don’t think outside the box… you misplaced it completely.",
+"😂 You’re not late… you arrive after the importance is over.",
+"🤣 Your brain is like free WiFi… connected but no internet.",
+"😂 You don’t fail… you just collect learning experiences non-stop.",
+"🤣 You’re not lost… you’re exploring without a destination.",
+"😂 Your plans are amazing… in theory only.",
+"🤣 You don’t overthink… you overcomplicate everything for no reason.",
+
+"😂 You’re not slow… you’re just loading life in HD.",
+"🤣 You don’t need competition… you’re already struggling solo.",
+"😂 You don’t lack ideas… just execution and timing.",
+"🤣 You’re not a problem… you’re a full update patch.",
+"😂 Your confidence is strong… facts are still loading.",
+"🤣 You don’t miss chances… chances miss you.",
+"😂 You’re not unlucky… you just ignore good options.",
+"🤣 You don’t lose focus… focus runs away from you.",
+"😂 You don’t make noise… you make confusion.",
+"🤣 You’re not extra… you’re unnecessary premium version.",
+
+"😂 You don’t quit… you just take permanent breaks.",
+"🤣 You’re not wrong… you’re just creatively incorrect.",
+"😂 You don’t bring solutions… you bring new problems.",
+"🤣 You’re not difficult… just unnecessarily complex.",
+"😂 You don’t lack direction… you just don’t follow it.",
+"🤣 You’re not dramatic… you’re full HD overreaction.",
+"😂 You don’t confuse people… you test their patience.",
+"🤣 You’re not unpredictable… you’re randomly consistent.",
+"😂 You don’t think small… you just don’t think fully.",
+"🤣 You’re not behind… you’re just in a different race (alone).",
+
+"😂 You don’t need enemies… your decisions are enough.",
+"🤣 You’re not offline… you’re disconnected from logic.",
+"😂 You don’t fail tests… tests give up on you.",
+"🤣 You’re not silent… just not adding value.",
+"😂 You don’t lack skill… you hide it too well.",
+"🤣 You’re not average… you’re uniquely confusing.",
+"😂 You don’t waste time… time wastes you.",
+"🤣 You’re not boring… you’re consistently predictable.",
+"😂 You don’t break rules… you ignore instructions.",
+"🤣 You’re not unlucky… you just pick wrong every time."
+];
+
+   let random = roasts[Math.floor(Math.random() * roasts.length)];
+random = name + " 👉 " + random;
+
+
+  document.getElementById("roastResult").innerText = random;
+}
+
+function copyRoast() {
+  let text = document.getElementById("roastResult").innerText;
+
+  if (text === "") {
+    alert("⚠️ No roast!");
+    return;
+  }
+
+  navigator.clipboard.writeText(text);
+  alert("🔥 Roast Copied!");
+}
+
+function showDonate() {
+  let box = document.getElementById("donateBox");
+  let popup = document.getElementById("thankPopup");
+
+  // toggle QR
+  box.style.display = box.style.display === "none" ? "block" : "none";
+
+  // show thank popup
+  popup.style.display = "block";
+}
+
+function closePopup() {
+  document.getElementById("thankPopup").style.display = "none";
+}
+function goGame() {
+  hideAll();
+  document.getElementById("game").style.display = "block";
+}
+
+function playGame() {
+  let user = document.getElementById("userNum").value;
+  let result = document.getElementById("gameResult");
+
+  if (user < 1 || user > 10) {
+    result.innerText = "⚠️ Choose between 1 to 10";
+    return;
+  }
+
+  let comp = Math.floor(Math.random() * 10) + 1;
+
+  if (parseInt(user) === comp) {
+    result.innerText = "🎉 You WIN! Computer chose " + comp;
+  } else {
+    result.innerText = "😅 You LOST! Computer chose " + comp;
+  }
+}
+function goAuth() {
+  hideAll();
+  document.getElementById("auth").style.display = "block";
+}
+
+function signup() {
+  let user = document.getElementById("authUser").value;
+  let pass = document.getElementById("authPass").value;
+
+  if (user === "" || pass === "") {
+    authMsg.innerText = "⚠️ Fill all fields";
+    return;
+  }
+
+  localStorage.setItem("user", user);
+  localStorage.setItem("pass", pass);
+
+  authMsg.innerText = "✅ Account Created!";
+}
+
+function login() {
+  let user = document.getElementById("authUser").value;
+  let pass = document.getElementById("authPass").value;
+
+  let savedUser = localStorage.getItem("user");
+  let savedPass = localStorage.getItem("pass");
+
+  if (user === savedUser && pass === savedPass) {
+    authMsg.innerText = "🎉 Login Successful!";
+  } else {
+    authMsg.innerText = "❌ Wrong Username or Password";
+  }
+}
+function openAd1() {
+  window.open("https://www.w3schools.com", "_blank");
+}
+
+function openAd2() {
+  window.open("https://earnkaro.com", "_blank");
+}
+
+function openAd3() {
+  window.open("https://poki.com", "_blank");
+}
+</script>  </body>  
+</html> 
